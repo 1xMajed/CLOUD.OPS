@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Operations Engineer Roadmap | خارطة طريق مهندس الكلاود</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0A0E1A;
+  --bg2:       #0F1525;
+  --bg3:       #141C30;
+  --card:      #131929;
+  --card2:     #1A2238;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+  --navy:      #1B3A5C;
+  --blue:      #3B82F6;
+  --blue2:     #60A5FA;
+  --teal:      #14B8A6;
+  --teal2:     #5EEAD4;
+  --green:     #22C55E;
+  --green2:    #86EFAC;
+  --amber:     #F59E0B;
+  --amber2:    #FCD34D;
+  --red:       #EF4444;
+  --purple:    #A855F7;
+  --purple2:   #D8B4FE;
+  --orange:    #F97316;
+  --text:      #E2E8F0;
+  --text2:     #94A3B8;
+  --text3:     #64748B;
+  --accent:    #3B82F6;
+  --glow:      rgba(59,130,246,0.15);
+  --font-ar:   'Tajawal', sans-serif;
+  --font-en:   'Syne', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ar);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+html[lang="en"] body { font-family: var(--font-en); }
+
+/* ── GRID NOISE BG ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(59,130,246,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(20,184,166,0.06) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 60L60 0M-15 15L15-15M45 75L75 45' stroke='rgba(255,255,255,0.02)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+/* ── TOPBAR ── */
+#topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  background: rgba(10,14,26,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blue2);
+  letter-spacing: 0.05em;
+}
+.nav-links {
+  display: flex; gap: 0.25rem;
+  list-style: none;
+}
+.nav-links a {
+  display: block; padding: 0.4rem 0.8rem;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--text2);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+/* ── LANG TOGGLE ── */
+#langBtn {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-ar);
+  font-size: 0.82rem; font-weight: 700;
+  color: var(--blue2);
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+#langBtn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+#langBtn .globe { font-size: 1rem; }
+
+/* ── HERO ── */
+#hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  overflow: hidden;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 50px;
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--blue2);
+  letter-spacing: 0.08em;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+html[lang="ar"] .hero-title { font-family: var(--font-ar); }
+html[lang="en"] .hero-title { font-family: var(--font-en); }
+
+.hero-title .line1 { display: block; color: var(--text); }
+.hero-title .line2 {
+  display: block;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 50%, var(--purple) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  max-width: 640px;
+  font-size: 1.1rem; color: var(--text2);
+  margin-bottom: 3rem;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;
+  margin-bottom: 3.5rem;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.stat-pill {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 50px;
+  font-size: 0.9rem;
+}
+.stat-pill strong { color: var(--blue2); font-weight: 800; }
+.stat-pill span { color: var(--text2); }
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+.btn-primary {
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, var(--blue) 0%, #1D4ED8 100%);
+  border: none; border-radius: 10px;
+  font-size: 0.95rem; font-weight: 700;
+  color: #fff; cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(59,130,246,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(59,130,246,0.5); }
+.btn-secondary {
+  padding: 0.85rem 2rem;
+  background: transparent;
+  border: 1px solid var(--border2); border-radius: 10px;
+  font-size: 0.95rem; font-weight: 700;
+  color: var(--text2); cursor: pointer;
+  transition: all 0.3s; text-decoration: none;
+}
+.btn-secondary:hover { border-color: var(--blue2); color: var(--blue2); }
+
+/* ── Scroll indicator ── */
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  color: var(--text3); font-size: 0.75rem;
+  animation: fadeUp 1s 1s ease both;
+}
+.scroll-arrow { animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+/* ── SECTIONS ── */
+.section {
+  position: relative; z-index: 1;
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--blue2);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(59,130,246,0.1);
+  border-radius: 4px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.15;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+html[lang="ar"] .section-title { font-family: var(--font-ar); }
+html[lang="en"] .section-title { font-family: var(--font-en); }
+
+.section-sub {
+  font-size: 1.05rem; color: var(--text2);
+  max-width: 640px; margin-bottom: 3.5rem;
+}
+html[lang="en"] .section-sub { max-width: 640px; }
+
+/* ── PHASE TIMELINE ── */
+.phases-track {
+  display: flex; flex-direction: column; gap: 0;
+}
+.phase-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0 2rem;
+  position: relative;
+}
+html[lang="ar"] .phase-item { grid-template-columns: 1fr 80px; }
+
+.phase-spine {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+html[lang="ar"] .phase-spine { order: 2; }
+html[lang="en"] .phase-spine { order: 1; }
+html[lang="ar"] .phase-content { order: 1; }
+html[lang="en"] .phase-content { order: 2; }
+
+.phase-dot {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem; font-weight: 700;
+  border: 2px solid;
+  position: relative; z-index: 2;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.phase-line {
+  width: 2px; flex: 1;
+  min-height: 40px;
+  margin: 4px 0;
+}
+.phase-item:last-child .phase-line { display: none; }
+.phase-content {
+  padding: 0 0 4rem;
+}
+.phase-content:last-child { padding-bottom: 0; }
+.phase-meta {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1rem; flex-wrap: wrap;
+}
+.phase-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px; font-weight: 700;
+}
+.phase-duration {
+  font-size: 0.82rem; color: var(--text3);
+}
+.phase-title {
+  font-size: 1.5rem; font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+html[lang="ar"] .phase-title { font-family: var(--font-ar); }
+html[lang="en"] .phase-title { font-family: var(--font-en); }
+
+.phase-desc { font-size: 0.95rem; color: var(--text2); margin-bottom: 1.5rem; }
+.phase-skills {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;
+}
+.skill-chip {
+  padding: 0.3rem 0.8rem;
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--text2);
+  font-family: var(--font-mono);
+  transition: all 0.2s;
+}
+.skill-chip:hover { border-color: var(--blue2); color: var(--blue2); }
+.phase-output {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem; color: var(--text2);
+}
+.phase-output::before { content: '🎯'; }
+
+/* Phase colors */
+.p1 .phase-dot { background: rgba(59,130,246,0.15); border-color: var(--blue); color: var(--blue2); }
+.p1 .phase-line { background: linear-gradient(to bottom, var(--blue), var(--teal)); }
+.p1 .phase-tag { background: rgba(59,130,246,0.15); color: var(--blue2); }
+.p1 .phase-title { color: var(--blue2); }
+.p2 .phase-dot { background: rgba(20,184,166,0.15); border-color: var(--teal); color: var(--teal2); }
+.p2 .phase-line { background: linear-gradient(to bottom, var(--teal), var(--green)); }
+.p2 .phase-tag { background: rgba(20,184,166,0.15); color: var(--teal2); }
+.p2 .phase-title { color: var(--teal2); }
+.p3 .phase-dot { background: rgba(34,197,94,0.15); border-color: var(--green); color: var(--green2); }
+.p3 .phase-line { background: linear-gradient(to bottom, var(--green), var(--purple)); }
+.p3 .phase-tag { background: rgba(34,197,94,0.15); color: var(--green2); }
+.p3 .phase-title { color: var(--green2); }
+.p4 .phase-dot { background: rgba(168,85,247,0.15); border-color: var(--purple); color: var(--purple2); }
+.p4 .phase-tag { background: rgba(168,85,247,0.15); color: var(--purple2); }
+.p4 .phase-title { color: var(--purple2); }
+
+/* ── CERTS GRID ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.cert-card {
+  padding: 1.4rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.cert-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.cert-card:hover { transform: translateY(-3px); border-color: var(--border2); }
+.cert-card.must::before { background: var(--green); }
+.cert-card.optional::before { background: var(--amber); }
+.cert-card.skip::before { background: var(--red); }
+.cert-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+.cert-name { font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+.cert-badge {
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.must .cert-badge { background: rgba(34,197,94,0.2); color: var(--green2); }
+.optional .cert-badge { background: rgba(245,158,11,0.2); color: var(--amber2); }
+.skip .cert-badge { background: rgba(239,68,68,0.2); color: #FCA5A5; }
+.cert-provider { font-size: 0.78rem; color: var(--text3); font-family: var(--font-mono); }
+.cert-why { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+/* ── PROJECTS GRID ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+.project-card {
+  padding: 1.6rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.project-card:hover { border-color: var(--border2); box-shadow: 0 10px 40px rgba(0,0,0,0.3); transform: translateY(-3px); }
+.project-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  color: var(--text3); margin-bottom: 0.6rem;
+}
+.project-title { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
+html[lang="ar"] .project-title { font-family: var(--font-ar); }
+html[lang="en"] .project-title { font-family: var(--font-en); }
+.project-phase-tag {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+  padding: 0.18rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem;
+}
+.project-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.65; margin-bottom: 1rem; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.stack-tag {
+  font-size: 0.72rem; font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text3);
+  font-family: var(--font-mono);
+}
+
+/* ── LINKEDIN SECTION ── */
+.linkedin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+.li-card {
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.3s;
+}
+.li-card:hover { border-color: var(--border2); }
+.li-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+.li-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
+.li-desc { font-size: 0.86rem; color: var(--text2); line-height: 1.65; }
+.li-items { list-style: none; margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.li-items li {
+  font-size: 0.83rem; color: var(--text2); padding: var(--lipad, 0.3rem 0 0.3rem 1.2rem);
+  position: relative;
+}
+html[lang="ar"] .li-items li { padding: 0.3rem 1.2rem 0.3rem 0; }
+.li-items li::before { content: '→'; position: absolute; left: 0; color: var(--blue); font-size: 0.75rem; }
+html[lang="ar"] .li-items li::before { left: auto; right: 0; content: '←'; }
+
+/* ── MISTAKES SECTION ── */
+.mistakes-list { display: flex; flex-direction: column; gap: 1rem; }
+.mistake-item {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.4rem 1.6rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  border-right: 4px solid var(--red);
+  transition: all 0.3s;
+}
+html[lang="en"] .mistake-item { border-right: none; border-left: 4px solid var(--red); }
+.mistake-item:hover { border-color: rgba(239,68,68,0.4); background: var(--card2); }
+.mistake-num {
+  font-family: var(--font-mono);
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--red); flex-shrink: 0;
+  width: 32px; margin-top: 2px;
+}
+.mistake-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+.mistake-desc { font-size: 0.86rem; color: var(--text2); line-height: 1.65; }
+
+/* ── STUDY SCHEDULE ── */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem; margin-bottom: 2rem;
+}
+.sched-card {
+  padding: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px; text-align: center;
+}
+.sched-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.sched-time { font-size: 1.4rem; font-weight: 800; color: var(--blue2); font-family: var(--font-mono); }
+.sched-label { font-size: 0.78rem; color: var(--text3); margin-bottom: 0.5rem; }
+.sched-act { font-size: 0.85rem; color: var(--text2); font-weight: 600; }
+
+/* ── ADVANCED SECTION ── */
+.advanced-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+@media(max-width:700px) { .advanced-grid { grid-template-columns: 1fr; } }
+.advanced-col {
+  padding: 1.6rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.advanced-col-title {
+  font-size: 1rem; font-weight: 800;
+  margin-bottom: 1.2rem; padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+.advanced-items { display: flex; flex-direction: column; gap: 0.85rem; }
+.adv-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+}
+html[lang="ar"] .adv-item { flex-direction: row-reverse; text-align: right; }
+.adv-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.adv-text { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
+.adv-text strong { color: var(--text); font-weight: 700; display: block; margin-bottom: 0.15rem; font-size: 0.9rem; }
+
+/* ── THE EXTRAS ── */
+.extras-cards {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 2rem;
+}
+@media(max-width:800px) { .extras-cards { grid-template-columns: 1fr; } }
+.extras-card {
+  padding: 1.8rem;
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.extras-card::before {
+  content: ''; position: absolute; inset: 0; opacity: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(59,130,246,0.1), transparent 60%);
+  transition: opacity 0.3s;
+}
+.extras-card:hover::before { opacity: 1; }
+.extras-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-4px); }
+.extras-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.extras-card-title { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
+.extras-card-sub { font-size: 0.82rem; color: var(--text3); margin-bottom: 1rem; }
+.extras-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.extras-bullets li { font-size: 0.83rem; color: var(--text2); display: flex; align-items: flex-start; gap: 0.5rem; }
+html[lang="ar"] .extras-bullets li { flex-direction: row-reverse; }
+.extras-bullets li::before { content: '•'; color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+
+.steps-track {
+  display: flex; align-items: center; justify-content: center; gap: 0; margin: 2rem 0;
+}
+.step-node {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.step-circle {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; font-family: var(--font-mono);
+  border: 2px solid;
+}
+.step-label { font-size: 0.78rem; font-weight: 700; }
+.step-line {
+  flex: 1; height: 2px; max-width: 120px;
+}
+.s1 .step-circle { background: rgba(168,85,247,0.2); border-color: var(--purple); color: var(--purple2); }
+.s1 .step-label { color: var(--purple2); }
+.s1-line { background: linear-gradient(90deg, var(--purple), var(--green)); }
+.s2 .step-circle { background: rgba(34,197,94,0.2); border-color: var(--green); color: var(--green2); }
+.s2 .step-label { color: var(--green2); }
+.s2-line { background: linear-gradient(90deg, var(--green), var(--amber)); }
+.s3 .step-circle { background: rgba(245,158,11,0.2); border-color: var(--amber); color: var(--amber2); }
+.s3 .step-label { color: var(--amber2); }
+
+/* ── IMPACT TABLE ── */
+.impact-table { width: 100%; border-collapse: collapse; }
+.impact-table th {
+  padding: 0.9rem 1.2rem;
+  background: var(--card2); font-size: 0.85rem; font-weight: 700;
+  border-bottom: 1px solid var(--border2);
+  text-align: right;
+}
+html[lang="en"] .impact-table th { text-align: left; }
+.impact-table td {
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem; vertical-align: top;
+  text-align: right;
+}
+html[lang="en"] .impact-table td { text-align: left; }
+.impact-table tr:last-child td { border-bottom: none; }
+.impact-table tr:hover td { background: rgba(255,255,255,0.02); }
+.bad-text { color: #FCA5A5; }
+.good-text { color: var(--green2); }
+
+/* ── CHECKLIST ── */
+.checklist { display: flex; flex-direction: column; gap: 0.6rem; }
+.check-group { margin-bottom: 0.5rem; }
+.check-group-title {
+  font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;
+  color: var(--blue2); font-family: var(--font-mono);
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.6rem; background: rgba(59,130,246,0.1); border-radius: 4px;
+  display: inline-block;
+}
+.check-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s; margin-bottom: 0.4rem;
+  user-select: none;
+}
+html[lang="ar"] .check-item { flex-direction: row-reverse; }
+.check-item:hover { border-color: var(--border2); }
+.check-item.done { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+.check-box {
+  width: 20px; height: 20px; flex-shrink: 0;
+  border: 2px solid var(--border2); border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; margin-top: 1px;
+  font-size: 0.75rem;
+}
+.check-item.done .check-box { background: var(--green); border-color: var(--green); color: #fff; }
+.check-text { font-size: 0.86rem; color: var(--text2); line-height: 1.5; }
+.check-item.done .check-text { text-decoration: line-through; color: var(--text3); }
+
+/* ── PROGRESS BAR ── */
+.progress-bar-wrap { margin-bottom: 2rem; }
+.progress-label {
+  display: flex; justify-content: space-between; margin-bottom: 0.5rem;
+  font-size: 0.83rem; color: var(--text2);
+}
+.progress-bar {
+  height: 8px; background: var(--card2); border-radius: 50px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 50px;
+  background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
+  transition: width 0.5s ease;
+}
+
+/* ── SECTION DIVIDERS ── */
+.full-divider {
+  position: relative; z-index: 1;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2) 30%, var(--border2) 70%, transparent);
+}
+
+/* ── CALLOUTS ── */
+.callout {
+  padding: 1.4rem 1.6rem;
+  border-radius: 12px; margin: 1.5rem 0;
+  border-right: 4px solid;
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+html[lang="en"] .callout { border-right: none; border-left: 4px solid; }
+.callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.callout-body {}
+.callout-title { font-weight: 800; margin-bottom: 0.4rem; font-size: 0.95rem; }
+.callout-text { font-size: 0.87rem; color: var(--text2); line-height: 1.65; }
+.callout.warn { background: rgba(245,158,11,0.08); border-color: var(--amber); }
+.callout.warn .callout-title { color: var(--amber2); }
+.callout.info { background: rgba(59,130,246,0.08); border-color: var(--blue); }
+.callout.info .callout-title { color: var(--blue2); }
+.callout.success { background: rgba(34,197,94,0.08); border-color: var(--green); }
+.callout.success .callout-title { color: var(--green2); }
+
+/* ── FOOTER ── */
+#footer {
+  position: relative; z-index: 1;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.footer-title { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; }
+.footer-sub { font-size: 0.9rem; color: var(--text3); margin-bottom: 1.5rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+  .nav-links { display: none; }
+  .phase-item { grid-template-columns: 50px 1fr !important; }
+  html[lang="ar"] .phase-item { grid-template-columns: 1fr 50px !important; }
+  .advanced-grid { grid-template-columns: 1fr; }
+  .extras-cards { grid-template-columns: 1fr; }
+}
+
+/* ── HIGHLIGHT CHIP ── */
+.highlight { color: var(--blue2); font-weight: 700; }
+.tag-green { color: var(--green2); }
+.tag-amber { color: var(--amber2); }
+.tag-red { color: #FCA5A5; }
+
+/* ── SECTION BG ACCENTS ── */
+.section-accent-1 { background: radial-gradient(ellipse 100% 60% at 100% 50%, rgba(59,130,246,0.04) 0%, transparent 70%); }
+.section-accent-2 { background: radial-gradient(ellipse 100% 60% at 0% 50%, rgba(20,184,166,0.04) 0%, transparent 70%); }
+.section-accent-3 { background: radial-gradient(ellipse 100% 60% at 100% 50%, rgba(34,197,94,0.04) 0%, transparent 70%); }
+</style>
+</head>
+
+<body>
+
+<!-- ── TOPBAR ── -->
+<header id="topbar">
+  <div class="logo">☁ CLOUD.OPS</div>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#phases" data-ar="المراحل" data-en="Phases">المراحل</a></li>
+      <li><a href="#certs" data-ar="الشهادات" data-en="Certs">الشهادات</a></li>
+      <li><a href="#projects" data-ar="المشاريع" data-en="Projects">المشاريع</a></li>
+      <li><a href="#linkedin" data-ar="لينكدإن" data-en="LinkedIn">لينكدإن</a></li>
+      <li><a href="#mistakes" data-ar="الأخطاء" data-en="Mistakes">الأخطاء</a></li>
+      <li><a href="#extras" data-ar="الإضافات" data-en="Extras">الإضافات</a></li>
+      <li><a href="#checklist" data-ar="القائمة" data-en="Checklist">القائمة</a></li>
+    </ul>
+  </nav>
+  <button id="langBtn" onclick="toggleLang()">
+    <span class="globe">🌐</span>
+    <span id="langLabel">English</span>
+  </button>
+</header>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-badge">
+    <span data-ar="☁ خارطة طريق مهندس عمليات الكلاود" data-en="☁ Cloud Operations Engineer Roadmap">☁ خارطة طريق مهندس عمليات الكلاود</span>
+  </div>
+  <h1 class="hero-title">
+    <span class="line1" data-ar="طريقك من الصفر" data-en="Your Path from Zero">طريقك من الصفر</span>
+    <span class="line2" data-ar="إلى مهندس كلاود محترف" data-en="to Professional Cloud Engineer">إلى مهندس كلاود محترف</span>
+  </h1>
+  <p class="hero-sub" data-ar="خارطة طريق واقعية وشاملة للعمل بدوام كامل — مبنية على الشهادات والمشاريع الحقيقية، وما تطلبه الشركات فعلاً." data-en="A realistic, comprehensive roadmap for full-time workers — built around certifications, real projects, and what companies actually hire for.">
+    خارطة طريق واقعية وشاملة للعمل بدوام كامل — مبنية على الشهادات والمشاريع الحقيقية، وما تطلبه الشركات فعلاً.
+  </p>
+  <div class="hero-stats">
+    <div class="stat-pill"><strong data-ar="٢٠ شهراً" data-en="20 Months">٢٠ شهراً</strong><span data-ar="المدة الكاملة" data-en="Full Duration">المدة الكاملة</span></div>
+    <div class="stat-pill"><strong data-ar="٣ مراحل" data-en="3 Phases">٣ مراحل</strong><span data-ar="أساسي ← متقدم" data-en="Foundations → Advanced">أساسي ← متقدم</span></div>
+    <div class="stat-pill"><strong data-ar="٨ شهادات" data-en="8 Certs">٨ شهادات</strong><span data-ar="المسار الموصى به" data-en="Recommended Path">المسار الموصى به</span></div>
+    <div class="stat-pill"><strong data-ar="١٢+ مشروع" data-en="12+ Projects">١٢+ مشروع</strong><span data-ar="لبناء المحفظة" data-en="Portfolio Builders">لبناء المحفظة</span></div>
+    <div class="stat-pill"><strong data-ar="١٨ ساعة" data-en="18 hrs/wk">١٨ ساعة</strong><span data-ar="أسبوعياً كافية" data-en="per week enough">أسبوعياً كافية</span></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#phases" class="btn-primary" data-ar="ابدأ الخارطة" data-en="Start the Roadmap">ابدأ الخارطة</a>
+    <a href="#checklist" class="btn-secondary" data-ar="قائمة التحقق" data-en="Job Checklist">قائمة التحقق</a>
+  </div>
+  <div class="scroll-hint"><span data-ar="اسحب للأسفل" data-en="Scroll down">اسحب للأسفل</span><span class="scroll-arrow">↓</span></div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ PHASES ══════════════════════════════════════════════ -->
+<section class="section section-accent-1 reveal" id="phases">
+  <div class="section-label" data-ar="خارطة الطريق" data-en="ROADMAP">خارطة الطريق</div>
+  <h2 class="section-title" data-ar="المراحل الثلاث — من الصفر إلى الاحتراف" data-en="Three Phases — From Zero to Expert">المراحل الثلاث — من الصفر إلى الاحتراف</h2>
+  <p class="section-sub" data-ar="كل مرحلة تبني على ما قبلها. لا تتسرّع في الانتقال — الأساس يحدد السقف." data-en="Each phase builds on the last. Don't rush transitions — the foundation determines the ceiling.">كل مرحلة تبني على ما قبلها. لا تتسرّع في الانتقال — الأساس يحدد السقف.</p>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠</span>
+    <div class="callout-body">
+      <div class="callout-title" data-ar="الفخ الأكبر: مجمّع الشهادات بلا مشاريع" data-en="The #1 Trap: Cert Collector Without Projects">الفخ الأكبر: مجمّع الشهادات بلا مشاريع</div>
+      <div class="callout-text" data-ar="الشهادات تفتح الأبواب — لكنها وحدها لا توظّفك. بعد كل شهادة، ابنِ شيئًا حقيقيًا. شهادتك في علوم الحاسب + الشهادات المهنية + مشاريع GitHub = ملف تنافسي جداً. لا تتخلَّ عن أي ضلع." data-en="Certifications open doors — but alone they won't get you hired. After every cert, build something real. CS diploma + certifications + GitHub projects = a highly competitive profile. Don't drop any leg of that triangle.">الشهادات تفتح الأبواب — لكنها وحدها لا توظّفك. بعد كل شهادة، ابنِ شيئًا حقيقيًا. شهادتك في علوم الحاسب + الشهادات المهنية + مشاريع GitHub = ملف تنافسي جداً. لا تتخلَّ عن أي ضلع.</div>
+    </div>
+  </div>
+
+  <div class="phases-track">
+
+    <!-- Phase 1 -->
+    <div class="phase-item p1 reveal">
+      <div class="phase-spine">
+        <div class="phase-dot">P1</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-meta">
+          <span class="phase-tag" data-ar="المرحلة الأولى" data-en="PHASE 1">المرحلة الأولى</span>
+          <span class="phase-duration" data-ar="الأشهر ١–٥  |  ~١٨ ساعة/أسبوع" data-en="Months 1–5  |  ~18 hrs/week">الأشهر ١–٥  |  ~١٨ ساعة/أسبوع</span>
+        </div>
+        <h3 class="phase-title" data-ar="الأساسيات — Linux · الشبكات · Git · AWS Cloud Practitioner" data-en="Foundations — Linux · Networking · Git · AWS Cloud Practitioner">الأساسيات — Linux · الشبكات · Git · AWS Cloud Practitioner</h3>
+        <p class="phase-desc" data-ar="الهدف: بناء الأساس الذي تقوم عليه كل مهارات الكلاود. معرفة Linux والشبكات هي ما يميّز مهندس الكلاود الحقيقي من السطحي." data-en="Goal: Build the foundation every cloud skill rests on. Linux and networking fluency is what separates real cloud engineers from surface-level ones.">الهدف: بناء الأساس الذي تقوم عليه كل مهارات الكلاود. معرفة Linux والشبكات هي ما يميّز مهندس الكلاود الحقيقي من السطحي.</p>
+        <div class="phase-skills">
+          <span class="skill-chip">Linux CLI</span><span class="skill-chip">Bash Scripting</span>
+          <span class="skill-chip">SSH & Permissions</span><span class="skill-chip">TCP/IP & DNS</span>
+          <span class="skill-chip">CIDR & Subnetting</span><span class="skill-chip">HTTP/HTTPS</span>
+          <span class="skill-chip">Git & GitHub</span><span class="skill-chip">AWS CLF-C02</span>
+          <span class="skill-chip">IAM basics</span><span class="skill-chip">EC2 & S3 intro</span>
+        </div>
+        <div class="phase-output" data-ar="المخرج: شهادة AWS Cloud Practitioner + ٢ مشاريع GitHub + ١٥+ commit نشط" data-en="Output: AWS Cloud Practitioner cert + 2 GitHub projects + 15+ active commits">المخرج: شهادة AWS Cloud Practitioner + ٢ مشاريع GitHub + ١٥+ commit نشط</div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-item p2 reveal">
+      <div class="phase-spine">
+        <div class="phase-dot">P2</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-meta">
+          <span class="phase-tag" data-ar="المرحلة الثانية" data-en="PHASE 2">المرحلة الثانية</span>
+          <span class="phase-duration" data-ar="الأشهر ٦–١٣  |  قابل للتوظيف" data-en="Months 6–13  |  Hireable Level">الأشهر ٦–١٣  |  قابل للتوظيف</span>
+        </div>
+        <h3 class="phase-title" data-ar="الكلاود الأساسي — AWS SAA · Docker · Terraform · Python · Linux+" data-en="Core Cloud — AWS SAA · Docker · Terraform · Python · Linux+">الكلاود الأساسي — AWS SAA · Docker · Terraform · Python · Linux+</h3>
+        <p class="phase-desc" data-ar="هذا هو المكان الذي تصبح فيه قابلاً للتوظيف فعلاً. هذه المهارات تظهر في ٨٠٪ من إعلانات وظائف الكلاود. كل مهارة يجب أن تقترن بمشروع عملي." data-en="This is where you become genuinely hireable. These skills appear in 80% of cloud job postings. Every skill here must be paired with a hands-on project.">هذا هو المكان الذي تصبح فيه قابلاً للتوظيف فعلاً. هذه المهارات تظهر في ٨٠٪ من إعلانات وظائف الكلاود. كل مهارة يجب أن تقترن بمشروع عملي.</p>
+        <div class="phase-skills">
+          <span class="skill-chip">AWS SAA-C03</span><span class="skill-chip">VPC Deep Dive</span>
+          <span class="skill-chip">EC2 Auto Scaling</span><span class="skill-chip">RDS & Aurora</span>
+          <span class="skill-chip">Lambda & Serverless</span><span class="skill-chip">Docker & Compose</span>
+          <span class="skill-chip">Terraform HCL</span><span class="skill-chip">Remote State</span>
+          <span class="skill-chip">Python + boto3</span><span class="skill-chip">Linux+/RHCSA</span>
+          <span class="skill-chip">CloudWatch</span><span class="skill-chip">Prometheus</span><span class="skill-chip">Grafana</span>
+        </div>
+        <div class="phase-output" data-ar="المخرج: AWS SAA + Linux+ + ٣ مشاريع كاملة على GitHub" data-en="Output: AWS SAA + Linux+ + 3 complete GitHub projects">المخرج: AWS SAA + Linux+ + ٣ مشاريع كاملة على GitHub</div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-item p3 reveal">
+      <div class="phase-spine">
+        <div class="phase-dot">P3</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-meta">
+          <span class="phase-tag" data-ar="المرحلة الثالثة" data-en="PHASE 3">المرحلة الثالثة</span>
+          <span class="phase-duration" data-ar="الأشهر ١٤–٢٠  |  تنافسي للغاية" data-en="Months 14–20  |  Highly Competitive">الأشهر ١٤–٢٠  |  تنافسي للغاية</span>
+        </div>
+        <h3 class="phase-title" data-ar="المتقدم — Kubernetes · CI/CD · SRE · أمن الكلاود · IaC متقدم" data-en="Advanced — Kubernetes · CI/CD · SRE · Cloud Security · Advanced IaC">المتقدم — Kubernetes · CI/CD · SRE · أمن الكلاود · IaC متقدم</h3>
+        <p class="phase-desc" data-ar="تأخذك من قابل للتوظيف إلى تنافسي جداً. هذه المهارات تقود إلى رواتب أعلى ومناصب أقدم." data-en="Takes you from hireable to highly competitive. These skills command higher salaries and senior titles.">تأخذك من قابل للتوظيف إلى تنافسي جداً. هذه المهارات تقود إلى رواتب أعلى ومناصب أقدم.</p>
+        <div class="phase-skills">
+          <span class="skill-chip">Kubernetes (CKA)</span><span class="skill-chip">kubeadm</span>
+          <span class="skill-chip">Helm Charts</span><span class="skill-chip">EKS on AWS</span>
+          <span class="skill-chip">GitHub Actions</span><span class="skill-chip">ArgoCD/GitOps</span>
+          <span class="skill-chip">IAM Advanced</span><span class="skill-chip">GuardDuty</span>
+          <span class="skill-chip">Terraform Modules</span><span class="skill-chip">Ansible</span>
+          <span class="skill-chip">SLI/SLO/SLA</span><span class="skill-chip">Error Budgets</span><span class="skill-chip">Chaos Eng.</span>
+        </div>
+        <div class="phase-output" data-ar="المخرج: شهادة CKA + Terraform Associate + محفظة كاملة" data-en="Output: CKA + Terraform Associate + Complete Portfolio">المخرج: شهادة CKA + Terraform Associate + محفظة كاملة</div>
+      </div>
+    </div>
+
+    <!-- Job Ready -->
+    <div class="phase-item p4 reveal">
+      <div class="phase-spine">
+        <div class="phase-dot">✓</div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-meta">
+          <span class="phase-tag" data-ar="جاهز للعمل" data-en="JOB READY">جاهز للعمل</span>
+          <span class="phase-duration" data-ar="من شهر ١٨+" data-en="Month 18+">من شهر ١٨+</span>
+        </div>
+        <h3 class="phase-title" data-ar="التوظيف — تحضير المقابلات · تحسين المحفظة · LinkedIn" data-en="Landing the Job — Interview Prep · Portfolio Polish · LinkedIn Optimization">التوظيف — تحضير المقابلات · تحسين المحفظة · LinkedIn</h3>
+        <p class="phase-desc" data-ar="ابدأ التقديم عند الوصول للمرحلة الثانية، لا تنتظر الكمال. المقابلات تعليم مجاني." data-en="Start applying when you reach Phase 2 completion. Don't wait for perfection. Interview feedback is free education.">ابدأ التقديم عند الوصول للمرحلة الثانية، لا تنتظر الكمال. المقابلات تعليم مجاني.</p>
+        <div class="phase-skills">
+          <span class="skill-chip">CV Writing</span><span class="skill-chip">LinkedIn Optimization</span>
+          <span class="skill-chip">Technical Interviews</span><span class="skill-chip">System Design basics</span>
+          <span class="skill-chip">Behavioral Questions</span><span class="skill-chip">Portfolio Presentation</span>
+        </div>
+        <div class="phase-output" data-ar="الهدف: Junior Cloud Engineer / Cloud Ops Engineer / Associate SRE" data-en="Target: Junior Cloud Engineer / Cloud Ops Engineer / Associate SRE">الهدف: Junior Cloud Engineer / Cloud Ops Engineer / Associate SRE</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ STUDY SCHEDULE ══════════════════════════════════════ -->
+<section class="section section-accent-2 reveal" id="schedule">
+  <div class="section-label" data-ar="الجدول الأسبوعي" data-en="WEEKLY SCHEDULE">الجدول الأسبوعي</div>
+  <h2 class="section-title" data-ar="استراتيجية الدراسة — ١٨ ساعة/أسبوع" data-en="Study Strategy — 18 hrs/week">استراتيجية الدراسة — ١٨ ساعة/أسبوع</h2>
+  <p class="section-sub" data-ar="مصمّمة بناءً على جدولك: ٩ ساعات عمل + ٢ ساعة تنقل يومياً + يومَا إجازة." data-en="Designed around your schedule: 9 hrs work + 2 hrs daily commute + 2 days off per week.">مصمّمة بناءً على جدولك: ٩ ساعات عمل + ٢ ساعة تنقل يومياً + يومَا إجازة.</p>
+  <div class="schedule-grid">
+    <div class="sched-card">
+      <div class="sched-icon">🚌</div>
+      <div class="sched-time">2.5h</div>
+      <div class="sched-label" data-ar="تنقل الصباح × ٥" data-en="Morning Commute × 5">تنقل الصباح × ٥</div>
+      <div class="sched-act" data-ar="فيديو + بودكاست" data-en="Video + Podcast">فيديو + بودكاست</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-icon">🎧</div>
+      <div class="sched-time">2.5h</div>
+      <div class="sched-label" data-ar="تنقل المساء × ٥" data-en="Evening Commute × 5">تنقل المساء × ٥</div>
+      <div class="sched-act" data-ar="أسئلة تدريبية + قراءة" data-en="Practice Questions">أسئلة تدريبية + قراءة</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-icon">💻</div>
+      <div class="sched-time">5h</div>
+      <div class="sched-label" data-ar="مساء أيام العمل × ٥" data-en="Weekday Evenings × 5">مساء أيام العمل × ٥</div>
+      <div class="sched-act" data-ar="مختبر عملي + كود" data-en="Hands-on Lab + Code">مختبر عملي + كود</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-icon">🔨</div>
+      <div class="sched-time">4-5h</div>
+      <div class="sched-label" data-ar="يوم الإجازة الأول" data-en="Day Off #1">يوم الإجازة الأول</div>
+      <div class="sched-act" data-ar="بناء المشاريع" data-en="Project Building">بناء المشاريع</div>
+    </div>
+    <div class="sched-card">
+      <div class="sched-icon">📝</div>
+      <div class="sched-time">3-4h</div>
+      <div class="sched-label" data-ar="يوم الإجازة الثاني" data-en="Day Off #2">يوم الإجازة الثاني</div>
+      <div class="sched-act" data-ar="مراجعة + توثيق" data-en="Review + Documentation">مراجعة + توثيق</div>
+    </div>
+  </div>
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body">
+      <div class="callout-title" data-ar="قاعدة ٦٠/٤٠" data-en="The 60/40 Rule">قاعدة ٦٠/٤٠</div>
+      <div class="callout-text" data-ar="٦٠٪ تطبيق عملي · ٤٠٪ تعلم منظّم. معظم المبتدئين يعكسون هذه النسبة — يستهلكون المحتوى بلا نهاية ولا يبنون شيئًا. الـ٦٠٪ العملي هو ما يبني ثقة المقابلة." data-en="60% hands-on practice · 40% structured learning. Most beginners invert this — they consume content endlessly without building anything. The 60% hands-on time is what builds interview confidence.">٦٠٪ تطبيق عملي · ٤٠٪ تعلم منظّم. معظم المبتدئين يعكسون هذه النسبة — يستهلكون المحتوى بلا نهاية ولا يبنون شيئًا. الـ٦٠٪ العملي هو ما يبني ثقة المقابلة.</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ CERTIFICATIONS ══════════════════════════════════════ -->
+<section class="section section-accent-3 reveal" id="certs">
+  <div class="section-label" data-ar="الشهادات" data-en="CERTIFICATIONS">الشهادات</div>
+  <h2 class="section-title" data-ar="مسار الشهادات — ما يهمّ فعلاً" data-en="Certification Path — What Actually Matters">مسار الشهادات — ما يهمّ فعلاً</h2>
+  <p class="section-sub" data-ar="الترتيب مهم. لا تقفز بين الشهادات عشوائياً." data-en="Order matters. Don't jump between certifications randomly.">الترتيب مهم. لا تقفز بين الشهادات عشوائياً.</p>
+  <div class="certs-grid">
+    <div class="cert-card must">
+      <div class="cert-header"><span class="cert-name">AWS Cloud Practitioner<br><small style="font-weight:400;color:var(--text3)">CLF-C02</small></span><span class="cert-badge" data-ar="ضرورية" data-en="MUST">ضرورية</span></div>
+      <div class="cert-provider">Amazon Web Services · $100</div>
+      <div class="cert-why" data-ar="بوابة الدخول. مطلوبة في كثير من الشركات للمناصب المبتدئة. سهلة وسريعة — ٤–٦ أسابيع دراسة." data-en="The entry gate. Required at many companies even for junior roles. Fast to complete — 4–6 weeks of study.">بوابة الدخول. مطلوبة في كثير من الشركات للمناصب المبتدئة. سهلة وسريعة — ٤–٦ أسابيع دراسة.</div>
+    </div>
+    <div class="cert-card must">
+      <div class="cert-header"><span class="cert-name">CompTIA Linux+<br><small style="font-weight:400;color:var(--text3)">أو RHCSA</small></span><span class="cert-badge" data-ar="ضرورية" data-en="MUST">ضرورية</span></div>
+      <div class="cert-provider">CompTIA / Red Hat</div>
+      <div class="cert-why" data-ar="تُثبت مهارات إدارة Linux — أكثر أنظمة التشغيل انتشاراً في الكلاود. اختر RHCSA للبيئات المؤسسية." data-en="Validates Linux admin skills — the most used OS in cloud. Choose RHCSA for enterprise environments.">تُثبت مهارات إدارة Linux — أكثر أنظمة التشغيل انتشاراً في الكلاود. اختر RHCSA للبيئات المؤسسية.</div>
+    </div>
+    <div class="cert-card must">
+      <div class="cert-header"><span class="cert-name">AWS Solutions Architect<br><small style="font-weight:400;color:var(--text3)">Associate SAA-C03</small></span><span class="cert-badge" data-ar="ضرورية" data-en="MUST">ضرورية</span></div>
+      <div class="cert-provider">Amazon Web Services · $300</div>
+      <div class="cert-why" data-ar="الأكثر طلبًا عالميًا. تظهر في عدد أكبر من إعلانات الوظائف من أي شهادة أخرى. لا غنى عنها." data-en="The most in-demand cloud cert globally. Appears in more job postings than any other. Non-negotiable.">الأكثر طلبًا عالميًا. تظهر في عدد أكبر من إعلانات الوظائف من أي شهادة أخرى. لا غنى عنها.</div>
+    </div>
+    <div class="cert-card must">
+      <div class="cert-header"><span class="cert-name">HashiCorp Terraform<br><small style="font-weight:400;color:var(--text3)">Associate</small></span><span class="cert-badge" data-ar="ضرورية" data-en="MUST">ضرورية</span></div>
+      <div class="cert-provider">HashiCorp · $70</div>
+      <div class="cert-why" data-ar="IaC مهارة إلزامية. خفيفة لكن تُشير لكفاءة عملية. Terraform في كل وظيفة كلاود تقريباً." data-en="IaC is a required skill. Lightweight exam but signals real-world tool competency. Terraform is everywhere.">IaC مهارة إلزامية. خفيفة لكن تُشير لكفاءة عملية. Terraform في كل وظيفة كلاود تقريباً.</div>
+    </div>
+    <div class="cert-card must">
+      <div class="cert-header"><span class="cert-name">Certified Kubernetes<br><small style="font-weight:400;color:var(--text3)">Administrator — CKA</small></span><span class="cert-badge" data-ar="ضرورية" data-en="MUST">ضرورية</span></div>
+      <div class="cert-provider">CNCF / Linux Foundation · $395</div>
+      <div class="cert-why" data-ar="عملية بالكامل، ٢ ساعة، ١٧ مهمة في Cluster حي. الأكثر احترامًا للمناصب الأقدم." data-en="Fully hands-on, 2 hours, 17 tasks in a live cluster. Most respected cert for senior roles.">عملية بالكامل، ٢ ساعة، ١٧ مهمة في Cluster حي. الأكثر احترامًا للمناصب الأقدم.</div>
+    </div>
+    <div class="cert-card optional">
+      <div class="cert-header"><span class="cert-name">AWS SysOps Admin<br><small style="font-weight:400;color:var(--text3)">Associate SOA-C02</small></span><span class="cert-badge" data-ar="اختيارية" data-en="OPTIONAL">اختيارية</span></div>
+      <div class="cert-provider">Amazon Web Services</div>
+      <div class="cert-why" data-ar="تركيز أكثر على التشغيل من SAA. ممتازة لأدوار CloudOps/SRE. فكّر فيها بعد SAA." data-en="More operational focus than SAA. Great for CloudOps/SRE roles. Consider after SAA.">تركيز أكثر على التشغيل من SAA. ممتازة لأدوار CloudOps/SRE. فكّر فيها بعد SAA.</div>
+    </div>
+    <div class="cert-card optional">
+      <div class="cert-header"><span class="cert-name">AWS DevOps Engineer<br><small style="font-weight:400;color:var(--text3)">Professional DOP-C02</small></span><span class="cert-badge" data-ar="اختيارية" data-en="OPTIONAL">اختيارية</span></div>
+      <div class="cert-provider">Amazon Web Services</div>
+      <div class="cert-why" data-ar="مستوى احترافي — إشارة قوية للمناصب الأقدم. اجمعها مع CKA لملف تنافسي جداً." data-en="Professional level — strong signal for senior roles. Combine with CKA for a very competitive profile.">مستوى احترافي — إشارة قوية للمناصب الأقدم. اجمعها مع CKA لملف تنافسي جداً.</div>
+    </div>
+    <div class="cert-card skip">
+      <div class="cert-header"><span class="cert-name">CompTIA A+<br><small style="font-weight:400;color:var(--text3)">Desktop Support</small></span><span class="cert-badge" data-ar="تجاوزها" data-en="SKIP">تجاوزها</span></div>
+      <div class="cert-provider">CompTIA</div>
+      <div class="cert-why" data-ar="شهادة دعم سطح المكتب. لا صلة لها بهندسة الكلاود. وقتك وأموالك أثمن." data-en="Desktop support cert. Zero relevance to cloud engineering. Your time and money are worth more.">شهادة دعم سطح المكتب. لا صلة لها بهندسة الكلاود. وقتك وأموالك أثمن.</div>
+    </div>
+    <div class="cert-card skip">
+      <div class="cert-header"><span class="cert-name">CompTIA Cloud+<br><small style="font-weight:400;color:var(--text3)">Vendor Neutral</small></span><span class="cert-badge" data-ar="تجاوزها" data-en="SKIP">تجاوزها</span></div>
+      <div class="cert-provider">CompTIA</div>
+      <div class="cert-why" data-ar="محايدة نظرياً — لكن الصناعة تفضّل AWS/Azure/GCP المحددة. اعترافها ضعيف مقارنةً بـ AWS SAA." data-en="Vendor-neutral in theory — but industry prefers specific provider certs. Weak recognition vs AWS SAA.">محايدة نظرياً — لكن الصناعة تفضّل AWS/Azure/GCP المحددة. اعترافها ضعيف مقارنةً بـ AWS SAA.</div>
+    </div>
+    <div class="cert-card skip">
+      <div class="cert-header"><span class="cert-name">ITIL Foundation</span><span class="cert-badge" data-ar="تجاوزها" data-en="SKIP">تجاوزها</span></div>
+      <div class="cert-provider">Axelos</div>
+      <div class="cert-why" data-ar="إطار إدارة العمليات — ليست مهارة تقنية. لن تحصّل لك وظيفة هندسة كلاود." data-en="Process management framework — not a technical skill. Won't land you a cloud engineering job.">إطار إدارة العمليات — ليست مهارة تقنية. لن تحصّل لك وظيفة هندسة كلاود.</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ PROJECTS ══════════════════════════════════════════════ -->
+<section class="section section-accent-1 reveal" id="projects">
+  <div class="section-label" data-ar="المشاريع" data-en="PROJECTS">المشاريع</div>
+  <h2 class="section-title" data-ar="المشاريع الحقيقية التي تُبرز محفظتك" data-en="Real Projects That Make Your Portfolio Stand Out">المشاريع الحقيقية التي تُبرز محفظتك</h2>
+  <p class="section-sub" data-ar="الجودة فوق الكمية. مشروع موثَّق جيداً يفوق ١٠ مشاريع ناقصة." data-en="Quality over quantity. A well-documented project beats 10 half-finished repos.">الجودة فوق الكمية. مشروع موثَّق جيداً يفوق ١٠ مشاريع ناقصة.</p>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 01</div>
+      <div class="project-title" data-ar="سكريبت تصليب سيرفر Linux" data-en="Linux Server Hardening Script">سكريبت تصليب سيرفر Linux</div>
+      <div class="project-phase-tag" style="background:rgba(59,130,246,0.15);color:var(--blue2)" data-ar="المرحلة الأولى" data-en="Phase 1">المرحلة الأولى</div>
+      <p class="project-desc" data-ar="سكريبت bash يؤتمت تأمين سيرفر Ubuntu: تعطيل SSH بالجذر، تفعيل UFW، إعداد fail2ban، مصادقة مفتاح SSH. مع مقارنة قبل/بعد للأمان في README." data-en="Bash script automating Ubuntu server hardening: disable root SSH, enable UFW, configure fail2ban, SSH key authentication. With before/after security comparison in README.">سكريبت bash يؤتمت تأمين سيرفر Ubuntu: تعطيل SSH بالجذر، تفعيل UFW، إعداد fail2ban، مصادقة مفتاح SSH. مع مقارنة قبل/بعد للأمان في README.</p>
+      <div class="project-stack"><span class="stack-tag">Bash</span><span class="stack-tag">Linux</span><span class="stack-tag">SSH</span><span class="stack-tag">UFW</span><span class="stack-tag">fail2ban</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 02</div>
+      <div class="project-title" data-ar="أداة تدقيق موارد AWS" data-en="AWS Resource Auditor">أداة تدقيق موارد AWS</div>
+      <div class="project-phase-tag" style="background:rgba(59,130,246,0.15);color:var(--blue2)" data-ar="المرحلة الأولى" data-en="Phase 1">المرحلة الأولى</div>
+      <p class="project-desc" data-ar="Python + boto3 يفحص حساب AWS: EC2 instances مع Tags، S3 بدون تشفير، Security Groups مفتوحة على المنفذ ٢٢. ينتج تقريرًا HTML." data-en="Python + boto3 scanning an AWS account: EC2 instances with tags, unencrypted S3 buckets, security groups open on port 22. Generates an HTML report.">Python + boto3 يفحص حساب AWS: EC2 instances مع Tags، S3 بدون تشفير، Security Groups مفتوحة على المنفذ ٢٢. ينتج تقريرًا HTML.</p>
+      <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">boto3</span><span class="stack-tag">AWS IAM</span><span class="stack-tag">S3</span><span class="stack-tag">EC2</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 03</div>
+      <div class="project-title" data-ar="تطبيق 3-Tier على AWS بـ Terraform" data-en="3-Tier App on AWS with Terraform">تطبيق 3-Tier على AWS بـ Terraform</div>
+      <div class="project-phase-tag" style="background:rgba(20,184,166,0.15);color:var(--teal2)" data-ar="المرحلة الثانية" data-en="Phase 2">المرحلة الثانية</div>
+      <p class="project-desc" data-ar="VPC + ALB + Auto Scaling Group + RDS MySQL + S3. بالكامل في Terraform مع Modules. Remote State في S3، CloudWatch Alarms، مخطط هندسة، تكلفة شهرية تقديرية." data-en="VPC + ALB + Auto Scaling Group + RDS MySQL + S3 — entirely in Terraform with modules. Remote state in S3, CloudWatch alarms, architecture diagram, estimated monthly cost.">VPC + ALB + Auto Scaling Group + RDS MySQL + S3. بالكامل في Terraform مع Modules. Remote State في S3، CloudWatch Alarms، مخطط هندسة، تكلفة شهرية تقديرية.</p>
+      <div class="project-stack"><span class="stack-tag">Terraform</span><span class="stack-tag">AWS VPC</span><span class="stack-tag">ALB</span><span class="stack-tag">RDS</span><span class="stack-tag">CloudWatch</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 04</div>
+      <div class="project-title" data-ar="تطبيق محوسب مع خط CI/CD" data-en="Containerized App with CI/CD Pipeline">تطبيق محوسب مع خط CI/CD</div>
+      <div class="project-phase-tag" style="background:rgba(20,184,166,0.15);color:var(--teal2)" data-ar="المرحلة الثانية" data-en="Phase 2">المرحلة الثانية</div>
+      <p class="project-desc" data-ar="Dockerize تطبيق ويب → رفعه لـ ECR → GitHub Actions Pipeline: اختبارات + فحص Trivy + نشر على ECS Fargate. يُظهر الحلقة الكاملة لـ DevOps." data-en="Dockerize a web app → push to ECR → GitHub Actions pipeline: tests + Trivy scan + deploy to ECS Fargate. Shows the complete DevOps loop.">Dockerize تطبيق ويب → رفعه لـ ECR → GitHub Actions Pipeline: اختبارات + فحص Trivy + نشر على ECS Fargate. يُظهر الحلقة الكاملة لـ DevOps.</p>
+      <div class="project-stack"><span class="stack-tag">Docker</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">ECR</span><span class="stack-tag">ECS Fargate</span><span class="stack-tag">Trivy</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 05</div>
+      <div class="project-title" data-ar="مكدّس مراقبة البنية التحتية" data-en="Infrastructure Monitoring Stack">مكدّس مراقبة البنية التحتية</div>
+      <div class="project-phase-tag" style="background:rgba(20,184,166,0.15);color:var(--teal2)" data-ar="المرحلة الثانية" data-en="Phase 2">المرحلة الثانية</div>
+      <p class="project-desc" data-ar="Prometheus + Grafana + Alertmanager على AWS. لوحات معلومات لمقاييس EC2 والتطبيق. تنبيهات على Slack. يُطبّق الإشارات الذهبية الأربع." data-en="Prometheus + Grafana + Alertmanager on AWS. Dashboards for EC2 and application metrics. Alerts to Slack. Implements the 4 Golden Signals.">Prometheus + Grafana + Alertmanager على AWS. لوحات معلومات لمقاييس EC2 والتطبيق. تنبيهات على Slack. يُطبّق الإشارات الذهبية الأربع.</p>
+      <div class="project-stack"><span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span><span class="stack-tag">Alertmanager</span><span class="stack-tag">node_exporter</span><span class="stack-tag">Slack API</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 06</div>
+      <div class="project-title" data-ar="Kubernetes Cluster من الصفر" data-en="Kubernetes Cluster from Scratch">Kubernetes Cluster من الصفر</div>
+      <div class="project-phase-tag" style="background:rgba(34,197,94,0.15);color:var(--green2)" data-ar="المرحلة الثالثة" data-en="Phase 3">المرحلة الثالثة</div>
+      <p class="project-desc" data-ar="kubeadm لبناء مجموعة ٣ عقد على EC2. HPA وRBAC وNetworkPolicies. نسخ احتياطي واستعادة etcd موثَّقان." data-en="kubeadm to build a 3-node cluster on EC2. HPA, RBAC, NetworkPolicies. Documented etcd backup and restore procedure.">kubeadm لبناء مجموعة ٣ عقد على EC2. HPA وRBAC وNetworkPolicies. نسخ احتياطي واستعادة etcd موثَّقان.</p>
+      <div class="project-stack"><span class="stack-tag">kubeadm</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">RBAC</span><span class="stack-tag">etcd</span><span class="stack-tag">HPA</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 07</div>
+      <div class="project-title" data-ar="منصة GitOps مع ArgoCD" data-en="GitOps Platform with ArgoCD">منصة GitOps مع ArgoCD</div>
+      <div class="project-phase-tag" style="background:rgba(34,197,94,0.15);color:var(--green2)" data-ar="المرحلة الثالثة" data-en="Phase 3">المرحلة الثالثة</div>
+      <p class="project-desc" data-ar="سير عمل GitOps كامل: بيانات التطبيق في Git، ArgoCD يزامن مع Kubernetes. Rollback عبر Git Revert. استراتيجية Canary Deployment." data-en="Full GitOps workflow: app manifests in Git, ArgoCD syncing to Kubernetes. Rollback via Git revert. Canary deployment strategy demonstrated.">سير عمل GitOps كامل: بيانات التطبيق في Git، ArgoCD يزامن مع Kubernetes. Rollback عبر Git Revert. استراتيجية Canary Deployment.</p>
+      <div class="project-stack"><span class="stack-tag">ArgoCD</span><span class="stack-tag">GitOps</span><span class="stack-tag">Kubernetes</span><span class="stack-tag">Helm</span><span class="stack-tag">Git</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">PROJECT / 08</div>
+      <div class="project-title" data-ar="أداة تحسين تكاليف الكلاود" data-en="Cloud Cost Optimization Tool">أداة تحسين تكاليف الكلاود</div>
+      <div class="project-phase-tag" style="background:rgba(34,197,94,0.15);color:var(--green2)" data-ar="المرحلة الثالثة" data-en="Phase 3">المرحلة الثالثة</div>
+      <p class="project-desc" data-ar="Lambda Function يومي: EC2 متوقفة ٧+ أيام، EBS غير مرتبطة، S3 غير مُستخدمة ٩٠+ يوماً. تقرير أسبوعي عبر SNS مع تقدير التوفير." data-en="Daily Lambda function: EC2 stopped 7+ days, unattached EBS, unused S3 buckets. Weekly report via SNS with savings estimate. Shows FinOps awareness.">Lambda Function يومي: EC2 متوقفة ٧+ أيام، EBS غير مرتبطة، S3 غير مُستخدمة ٩٠+ يوماً. تقرير أسبوعي عبر SNS مع تقدير التوفير.</p>
+      <div class="project-stack"><span class="stack-tag">Lambda</span><span class="stack-tag">boto3</span><span class="stack-tag">SNS</span><span class="stack-tag">EventBridge</span><span class="stack-tag">FinOps</span></div>
+    </div>
+  </div>
+
+  <div class="callout success" style="margin-top:2rem">
+    <span class="callout-icon">🏆</span>
+    <div class="callout-body">
+      <div class="callout-title" data-ar="اختبار الـ ٦٠ ثانية" data-en="The 60-Second Recruiter Test">اختبار الـ ٦٠ ثانية</div>
+      <div class="callout-text" data-ar="افتح مستودع مشروعك وابدأ المؤقت. هل يستطيع المُوظِّف الإجابة على: ماذا يفعل هذا المشروع؟ أين المخطط الهندسي؟ هل صاحبه يفكّر بعقلية الإنتاج؟ — في ٦٠ ثانية. إذا كانت الإجابة 'لا' على أي منها — أعد كتابة الـ README قبل أي طلب توظيف." data-en="Open your project repo and start a timer. Can a recruiter answer: What does this project do? Where's the architecture diagram? Does this person think production-minded? — in 60 seconds. If any answer is 'no' — rewrite your README before submitting another application.">افتح مستودع مشروعك وابدأ المؤقت. هل يستطيع المُوظِّف الإجابة على: ماذا يفعل هذا المشروع؟ أين المخطط الهندسي؟ هل صاحبه يفكّر بعقلية الإنتاج؟ — في ٦٠ ثانية. إذا كانت الإجابة 'لا' على أي منها — أعد كتابة الـ README قبل أي طلب توظيف.</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ LINKEDIN ══════════════════════════════════════════════ -->
+<section class="section section-accent-2 reveal" id="linkedin">
+  <div class="section-label" data-ar="لينكدإن" data-en="LINKEDIN">لينكدإن</div>
+  <h2 class="section-title" data-ar="تحسين LinkedIn لجذب المُوظِّفين" data-en="LinkedIn Optimization for Cloud Recruiters">تحسين LinkedIn لجذب المُوظِّفين</h2>
+  <p class="section-sub" data-ar="المُوظِّفون يبحثون بالكلمات المفتاحية — إذا لم تكن في ملفك، أنت غير موجود." data-en="Recruiters search by keywords — if they're not in your profile, you don't exist.">المُوظِّفون يبحثون بالكلمات المفتاحية — إذا لم تكن في ملفك، أنت غير موجود.</p>
+  <div class="linkedin-grid">
+    <div class="li-card reveal">
+      <div class="li-icon">✏️</div>
+      <div class="li-title" data-ar="العنوان الوظيفي — أهم سطر" data-en="Headline — Most Important Line">العنوان الوظيفي — أهم سطر</div>
+      <div class="li-desc" data-ar="لا تكتب 'باحث عن عمل'. اكتب الدور الذي تصبحه:" data-en="Never write 'Looking for opportunities'. Write the role you're becoming:">لا تكتب 'باحث عن عمل'. اكتب الدور الذي تصبحه:</div>
+      <ul class="li-items">
+        <li data-ar="Cloud Engineer | AWS | Terraform | Kubernetes | Linux" data-en="Cloud Engineer | AWS | Terraform | Kubernetes | Linux">Cloud Engineer | AWS | Terraform | Kubernetes | Linux</li>
+        <li data-ar="أضف آخر شهادة حصلت عليها فور اجتيازها" data-en="Add your latest cert immediately after passing it">أضف آخر شهادة حصلت عليها فور اجتيازها</li>
+      </ul>
+    </div>
+    <div class="li-card reveal">
+      <div class="li-icon">📖</div>
+      <div class="li-title" data-ar="قسم About — عرضك في ٥ جمل" data-en="About Section — 5-Sentence Pitch">قسم About — عرضك في ٥ جمل</div>
+      <div class="li-desc" data-ar="الهيكل الصحيح:" data-en="The right structure:">الهيكل الصحيح:</div>
+      <ul class="li-items">
+        <li data-ar="ما تفعله وما تتجه نحوه" data-en="What you do and where you're heading">ما تفعله وما تتجه نحوه</li>
+        <li data-ar="مكدسك التقني الأساسي" data-en="Your primary technical stack">مكدسك التقني الأساسي</li>
+        <li data-ar="ما بنيته (مشروع + نتيجة قابلة للقياس)" data-en="What you've built (project + measurable result)">ما بنيته (مشروع + نتيجة قابلة للقياس)</li>
+        <li data-ar="ما تتعلمه حاليًا" data-en="What you're currently learning">ما تتعلمه حاليًا</li>
+        <li data-ar="ما الأدوار التي تبحث عنها" data-en="What roles you're looking for">ما الأدوار التي تبحث عنها</li>
+      </ul>
+    </div>
+    <div class="li-card reveal">
+      <div class="li-icon">🔑</div>
+      <div class="li-title" data-ar="كلمات مفتاحية لا تفوتها" data-en="Keywords You Must Include">كلمات مفتاحية لا تفوتها</div>
+      <div class="li-desc" data-ar="أضفها جميعاً في قسم Skills:" data-en="Add all of these to your Skills section:">أضفها جميعاً في قسم Skills:</div>
+      <ul class="li-items">
+        <li>Amazon Web Services (AWS) · Terraform · Kubernetes</li>
+        <li>Docker · Linux Administration · Python · Bash</li>
+        <li>CI/CD · GitHub Actions · Prometheus · Grafana</li>
+        <li>CloudWatch · IAM · Infrastructure as Code</li>
+        <li>Site Reliability Engineering (SRE)</li>
+      </ul>
+    </div>
+    <div class="li-card reveal">
+      <div class="li-icon">📌</div>
+      <div class="li-title" data-ar="قسم Featured — عقارات ذهبية" data-en="Featured Section — Prime Real Estate">قسم Featured — عقارات ذهبية</div>
+      <ul class="li-items">
+        <li data-ar="رابط لأفضل مشروع GitHub مع معاينة صورة" data-en="Link to best GitHub project with image preview">رابط لأفضل مشروع GitHub مع معاينة صورة</li>
+        <li data-ar="مقطع فيديو Loom مدته دقيقتان لمشروعك" data-en="2-minute Loom walkthrough of your best project">مقطع فيديو Loom مدته دقيقتان لمشروعك</li>
+        <li data-ar="رابط لمقالة تقنية كتبتها" data-en="Link to a technical article you wrote">رابط لمقالة تقنية كتبتها</li>
+        <li data-ar="موقعك الشخصي / صفحة المحفظة" data-en="Your personal website / portfolio page">موقعك الشخصي / صفحة المحفظة</li>
+      </ul>
+    </div>
+    <div class="li-card reveal">
+      <div class="li-icon">📢</div>
+      <div class="li-title" data-ar="استراتيجية النشاط الأسبوعي" data-en="Weekly Activity Strategy">استراتيجية النشاط الأسبوعي</div>
+      <ul class="li-items">
+        <li data-ar="منشور أسبوعي عمّا تتعلمه مع مثال تقني" data-en="Weekly post about what you're learning with a technical example">منشور أسبوعي عمّا تتعلمه مع مثال تقني</li>
+        <li data-ar="تعليق مدروس على منشورات مهندسي الكلاود" data-en="Thoughtful comments on cloud engineer posts">تعليق مدروس على منشورات مهندسي الكلاود</li>
+        <li data-ar="شارك كل إنجاز: شهادة، مشروع، مقالة" data-en="Share every milestone: cert, project, article">شارك كل إنجاز: شهادة، مشروع، مقالة</li>
+        <li data-ar="تواصل مع SREs في الشركات المستهدفة" data-en="Connect with SREs at your target companies">تواصل مع SREs في الشركات المستهدفة</li>
+      </ul>
+    </div>
+    <div class="li-card reveal">
+      <div class="li-icon">💼</div>
+      <div class="li-title" data-ar="قسم Experience — صيغة البنود" data-en="Experience Section — Bullet Formula">قسم Experience — صيغة البنود</div>
+      <div class="li-desc" data-ar="كل بند يتبع: فعل + ماذا + أداة + نتيجة قابلة للقياس:" data-en="Every bullet: Action + What + Tool + Measurable Result:">كل بند يتبع: فعل + ماذا + أداة + نتيجة قابلة للقياس:</div>
+      <ul class="li-items">
+        <li data-ar="❌ 'أدرت بنية تحتية سحابية'" data-en="❌ 'Managed cloud infrastructure'">❌ <span data-ar="'أدرت بنية تحتية سحابية'" data-en="'Managed cloud infrastructure'">'أدرت بنية تحتية سحابية'</span></li>
+        <li data-ar="✅ 'أتمتة توفير EC2 بـ Terraform، خفّض وقت الإعداد من ٤ ساعات إلى ٨ دقائق'" data-en="✅ 'Automated EC2 provisioning via Terraform, reducing setup from 4 hrs to 8 min'">✅ <span data-ar="'أتمتة توفير EC2 بـ Terraform، خفّض وقت الإعداد من ٤ ساعات إلى ٨ دقائق'" data-en="'Automated EC2 provisioning via Terraform, reducing setup from 4 hrs to 8 min'">'أتمتة توفير EC2 بـ Terraform، خفّض وقت الإعداد من ٤ ساعات إلى ٨ دقائق'</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ MISTAKES ══════════════════════════════════════════════ -->
+<section class="section section-accent-3 reveal" id="mistakes">
+  <div class="section-label" data-ar="الأخطاء الشائعة" data-en="COMMON MISTAKES">الأخطاء الشائعة</div>
+  <h2 class="section-title" data-ar="الأخطاء التي تُضيّع سنوات" data-en="Mistakes That Waste Years">الأخطاء التي تُضيّع سنوات</h2>
+  <p class="section-sub" data-ar="رأيتها على مدى ١٥ عامًا. تجنّبها يوفّر عليك ٦–١٢ شهراً." data-en="Seen over 15 years. Avoiding these saves 6–12 months.">رأيتها على مدى ١٥ عامًا. تجنّبها يوفّر عليك ٦–١٢ شهراً.</p>
+  <div class="mistakes-list">
+    <div class="mistake-item reveal"><span class="mistake-num">01</span><div><div class="mistake-title" data-ar="جحيم الدروس التعليمية" data-en="Tutorial Hell">جحيم الدروس التعليمية</div><div class="mistake-desc" data-ar="مشاهدة الدروس باستمرار دون البناء المستقل. يمكنك مشاهدة ٢٠٠ ساعة من Terraform ولا تزال غير قادر على كتابة VPC Module. بعد كل قسم، أغلق الفيديو وابنِه من الذاكرة." data-en="Watching tutorials endlessly without building independently. You can watch 200 hours of Terraform content and still not write a VPC module. After every section, close the video and build it from memory.">مشاهدة الدروس باستمرار دون البناء المستقل. يمكنك مشاهدة ٢٠٠ ساعة من Terraform ولا تزال غير قادر على كتابة VPC Module. بعد كل قسم، أغلق الفيديو وابنِه من الذاكرة.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">02</span><div><div class="mistake-title" data-ar="تخطّي أساسيات Linux" data-en="Skipping Linux Fundamentals">تخطّي أساسيات Linux</div><div class="mistake-desc" data-ar="القفز مباشرة إلى Kubernetes أو AWS. عندما يتعطّل شيء في الإنتاج — وسيتعطّل — تحتاج SSH وتشخيص. بلا Linux = بلا عمليات كلاود حقيقية." data-en="Jumping straight to Kubernetes or AWS. When something breaks in production — and it will — you need SSH and troubleshooting skills. No Linux = no real cloud ops.">القفز مباشرة إلى Kubernetes أو AWS. عندما يتعطّل شيء في الإنتاج — وسيتعطّل — تحتاج SSH وتشخيص. بلا Linux = بلا عمليات كلاود حقيقية.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">03</span><div><div class="mistake-title" data-ar="جمع الشهادات بلا مشاريع" data-en="Cert Collecting Without Projects">جمع الشهادات بلا مشاريع</div><div class="mistake-desc" data-ar="اجتياز شهادات AWS المتعددة دون مشروع حقيقي واحد. المُوظِّفون يكشفون مجمّعي الشهادات فوراً في المقابلات التقنية." data-en="Passing multiple AWS certs without a single real project. Hiring managers spot cert collectors instantly in technical interviews.">اجتياز شهادات AWS المتعددة دون مشروع حقيقي واحد. المُوظِّفون يكشفون مجمّعي الشهادات فوراً في المقابلات التقنية.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">04</span><div><div class="mistake-title" data-ar="عدم كسر الأشياء عمدًا" data-en="Never Breaking Things Intentionally">عدم كسر الأشياء عمدًا</div><div class="mistake-desc" data-ar="اتباع المسار السعيد فقط. احذف Security Group، أفسد Terraform State، أوقف عقدة Kubernetes — ثم أصلح. هذا هو التعلم الحقيقي." data-en="Only following happy-path tutorials. Delete a security group, corrupt Terraform state, take down a K8s node — then fix it. That's real learning.">اتباع المسار السعيد فقط. احذف Security Group، أفسد Terraform State، أوقف عقدة Kubernetes — ثم أصلح. هذا هو التعلم الحقيقي.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">05</span><div><div class="mistake-title" data-ar="ملف GitHub خاص" data-en="Private GitHub Profile">ملف GitHub خاص</div><div class="mistake-desc" data-ar="كل كودك خاص — لا يستطيع أي مُوظِّف رؤية عملك. اجعل مشاريعك عامة. مشروع غير مكتمل أفضل من ملف فارغ." data-en="All your code is private — no recruiter can see your work. Make your projects public. An imperfect project beats an empty or private profile.">كل كودك خاص — لا يستطيع أي مُوظِّف رؤية عملك. اجعل مشاريعك عامة. مشروع غير مكتمل أفضل من ملف فارغ.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">06</span><div><div class="mistake-title" data-ar="الانتظار حتى تكون 'جاهزًا'" data-en="Waiting Until You're 'Ready'">الانتظار حتى تكون 'جاهزًا'</div><div class="mistake-desc" data-ar="لا تنتظر ٥ شهادات و١٠ مشاريع. ابدأ التقديم عند AWS SAA + ٢–٣ مشاريع. تغذية راجعة المقابلة تعليم مجاني لا يُقدَّر بثمن." data-en="Don't wait for 5 certs and 10 projects. Start applying with AWS SAA + 2–3 projects. Interview feedback is free, invaluable education.">لا تنتظر ٥ شهادات و١٠ مشاريع. ابدأ التقديم عند AWS SAA + ٢–٣ مشاريع. تغذية راجعة المقابلة تعليم مجاني لا يُقدَّر بثمن.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">07</span><div><div class="mistake-title" data-ar="لا عادة توثيق" data-en="No Documentation Habit">لا عادة توثيق</div><div class="mistake-desc" data-ar="بناء المشاريع دون كتابة README أو مخططات هندسية. التوثيق مهارة أساسية في عمليات الكلاود. ابدأ كتابة README لكل مشروع الآن." data-en="Building projects without READMEs or architecture diagrams. Documentation is a core cloud ops skill. Start writing a README for every project, now.">بناء المشاريع دون كتابة README أو مخططات هندسية. التوثيق مهارة أساسية في عمليات الكلاود. ابدأ كتابة README لكل مشروع الآن.</div></div></div>
+    <div class="mistake-item reveal"><span class="mistake-num">08</span><div><div class="mistake-title" data-ar="تجاهل الشبكات" data-en="Ignoring Networking Fundamentals">تجاهل الشبكات</div><div class="mistake-desc" data-ar="التفكير بأن Security Groups سحرية دون فهم TCP/IP وCIDR. عندما لا يعمل VPC، لن تتمكن من التشخيص بدون معرفة شبكات حقيقية." data-en="Thinking Security Groups are magic without understanding TCP/IP and CIDR. When a VPC config doesn't work, you can't debug it without real networking knowledge.">التفكير بأن Security Groups سحرية دون فهم TCP/IP وCIDR. عندما لا يعمل VPC، لن تتمكن من التشخيص بدون معرفة شبكات حقيقية.</div></div></div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ ADVANCED SKILLS ════════════════════════════════════════ -->
+<section class="section section-accent-1 reveal" id="advanced">
+  <div class="section-label" data-ar="مهارات متقدمة" data-en="ADVANCED SKILLS">مهارات متقدمة</div>
+  <h2 class="section-title" data-ar="ما يُميّز أفضل المهندسين" data-en="What Separates Top Engineers">ما يُميّز أفضل المهندسين</h2>
+  <p class="section-sub" data-ar="بعد التوظيف — هذه المهارات ترفع راتبك وتسرّع انتقالك للمناصب الأقدم." data-en="After landing the job — these skills raise your salary and accelerate your path to senior roles.">بعد التوظيف — هذه المهارات ترفع راتبك وتسرّع انتقالك للمناصب الأقدم.</p>
+  <div class="advanced-grid">
+    <div class="advanced-col reveal">
+      <div class="advanced-col-title" style="color:var(--blue2)">
+        <span data-ar="⚡ المُميّزات التقنية" data-en="⚡ Technical Differentiators">⚡ المُميّزات التقنية</span>
+      </div>
+      <div class="advanced-items">
+        <div class="adv-item"><span class="adv-dot" style="background:var(--blue)"></span><div class="adv-text"><strong data-ar="FinOps — إدارة تكاليف الكلاود" data-en="FinOps — Cloud Cost Management">FinOps — إدارة تكاليف الكلاود</strong><span data-ar="نمذجة التكاليف، Reserved Instances، Savings Plans، تحسين حجم الموارد — فاتورة الكلاود دائمًا مصدر قلق القيادة." data-en="Cost modeling, Reserved Instances, Savings Plans, rightsizing — cloud bills are always a leadership concern.">نمذجة التكاليف، Reserved Instances، Savings Plans، تحسين حجم الموارد — فاتورة الكلاود دائمًا مصدر قلق القيادة.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--teal)"></span><div class="adv-text"><strong data-ar="Observability المتقدم" data-en="Advanced Observability">Observability المتقدم</strong><span data-ar="Distributed Tracing (Jaeger/Zipkin)، OpenTelemetry، مقاييس مخصصة — ما وراء المراقبة الأساسية." data-en="Distributed Tracing (Jaeger/Zipkin), OpenTelemetry, custom metrics — beyond basic monitoring.">Distributed Tracing (Jaeger/Zipkin)، OpenTelemetry، مقاييس مخصصة — ما وراء المراقبة الأساسية.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--purple)"></span><div class="adv-text"><strong data-ar="Platform Engineering" data-en="Platform Engineering">Platform Engineering</strong><span data-ar="بناء منصات مطورين داخلية، بنية تحتية ذاتية الخدمة، Golden Paths — مستقبل عمليات الكلاود." data-en="Building internal developer platforms, self-service infrastructure, Golden Paths — the future of cloud ops.">بناء منصات مطورين داخلية، بنية تحتية ذاتية الخدمة، Golden Paths — مستقبل عمليات الكلاود.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--orange)"></span><div class="adv-text"><strong data-ar="Chaos Engineering" data-en="Chaos Engineering">Chaos Engineering</strong><span data-ar="حقن الأعطال المتحكّم به، GameDays، اختبار المرونة بشكل استباقي." data-en="Controlled failure injection, GameDays, proactive resilience testing.">حقن الأعطال المتحكّم به، GameDays، اختبار المرونة بشكل استباقي.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--green)"></span><div class="adv-text"><strong data-ar="Service Mesh — Istio/Linkerd" data-en="Service Mesh — Istio/Linkerd">Service Mesh — Istio/Linkerd</strong><span data-ar="mTLS بين الخدمات، إدارة الحركة، ملاحظة الشبكة على نطاق واسع." data-en="mTLS between services, traffic management, network observability at scale.">mTLS بين الخدمات، إدارة الحركة، ملاحظة الشبكة على نطاق واسع.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--red)"></span><div class="adv-text"><strong data-ar="eBPF" data-en="eBPF">eBPF</strong><span data-ar="ملاحظة وأمان على مستوى النواة — ناشئ لكن ينمو بسرعة. سيكون ضرورياً في ٣ سنوات." data-en="Kernel-level observability and security — emerging but growing fast. Will be essential in 3 years.">ملاحظة وأمان على مستوى النواة — ناشئ لكن ينمو بسرعة. سيكون ضرورياً في ٣ سنوات.</span></div></div>
+      </div>
+    </div>
+    <div class="advanced-col reveal">
+      <div class="advanced-col-title" style="color:var(--green2)">
+        <span data-ar="🎯 المهارات التشغيلية والقيادية" data-en="🎯 Operational & Leadership Skills">🎯 المهارات التشغيلية والقيادية</span>
+      </div>
+      <div class="advanced-items">
+        <div class="adv-item"><span class="adv-dot" style="background:var(--green)"></span><div class="adv-text"><strong data-ar="قائد الحوادث" data-en="Incident Commander">قائد الحوادث</strong><span data-ar="إدارة غرف الحرب بهدوء، التواصل مع أصحاب المصلحة تحت ضغط، كتابة تقارير ما بعد الحادثة." data-en="Leading war rooms calmly, communicating to stakeholders under pressure, writing blameless post-mortems.">إدارة غرف الحرب بهدوء، التواصل مع أصحاب المصلحة تحت ضغط، كتابة تقارير ما بعد الحادثة.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--teal)"></span><div class="adv-text"><strong data-ar="إدارة الوضع الأمني" data-en="Security Posture Management">إدارة الوضع الأمني</strong><span data-ar="معايير CIS، امتثال SOC 2، مراجعات هندسة أمن الكلاود — الأمن مسؤولية الكلاود الآن." data-en="CIS Benchmarks, SOC 2 compliance, cloud security architecture reviews — security is now cloud ops responsibility.">معايير CIS، امتثال SOC 2، مراجعات هندسة أمن الكلاود — الأمن مسؤولية الكلاود الآن.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--blue)"></span><div class="adv-text"><strong data-ar="الكتابة التقنية المتقدمة" data-en="Advanced Technical Writing">الكتابة التقنية المتقدمة</strong><span data-ar="دليل الإجراءات Runbooks، سجلات قرارات الهندسة ADRs، تقارير الحوادث التي تمنع التكرار." data-en="Runbooks, Architecture Decision Records (ADRs), incident post-mortems that actually prevent recurrence.">دليل الإجراءات Runbooks، سجلات قرارات الهندسة ADRs، تقارير الحوادث التي تمنع التكرار.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--amber)"></span><div class="adv-text"><strong data-ar="تخطيط الطاقة الاستيعابية" data-en="Capacity Planning">تخطيط الطاقة الاستيعابية</strong><span data-ar="التنبؤ بالنمو، التفاوض على Reserved Instances، تجنّب ردود الفعل المتأخرة." data-en="Growth forecasting, Reserved Instance negotiation, avoiding reactive firefighting.">التنبؤ بالنمو، التفاوض على Reserved Instances، تجنّب ردود الفعل المتأخرة.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--purple)"></span><div class="adv-text"><strong data-ar="التأثير عبر الوظائف" data-en="Cross-functional Influence">التأثير عبر الوظائف</strong><span data-ar="التعاون مع الأمن والمالية وفرق المنتج — عمليات الكلاود ليست وظيفة تقنية بحتة." data-en="Working with security, finance, and product teams — cloud ops is never just a technical function.">التعاون مع الأمن والمالية وفرق المنتج — عمليات الكلاود ليست وظيفة تقنية بحتة.</span></div></div>
+        <div class="adv-item"><span class="adv-dot" style="background:var(--red)"></span><div class="adv-text"><strong data-ar="إرشاد المهندسين الجدد" data-en="Mentoring Junior Engineers">إرشاد المهندسين الجدد</strong><span data-ar="أسرع طريقة لترسيخ معرفتك وتسريع ترقيتك للمستوى الأقدم." data-en="The fastest way to cement your own knowledge and get noticed for promotion to senior.">أسرع طريقة لترسيخ معرفتك وتسريع ترقيتك للمستوى الأقدم.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ THE EXTRAS ════════════════════════════════════════════ -->
+<section class="section section-accent-2 reveal" id="extras">
+  <div class="section-label" data-ar="الإضافات" data-en="THE EXTRAS">الإضافات</div>
+  <h2 class="section-title">+ <span data-ar="كل ما تحتاجه للحصول على الوظيفة" data-en="Everything You Need to Land the Job">كل ما تحتاجه للحصول على الوظيفة</span></h2>
+  <p class="section-sub" data-ar="الجسر بين الدراسة والتوظيف. معظم المرشحين يُنجزون الشهادات والمشاريع — لكنهم يفشلون في تقديم أعمالهم." data-en="The bridge between studying and getting hired. Most candidates complete certs and projects — but fail to present their work effectively.">الجسر بين الدراسة والتوظيف. معظم المرشحين يُنجزون الشهادات والمشاريع — لكنهم يفشلون في تقديم أعمالهم.</p>
+
+  <div class="extras-cards">
+    <div class="extras-card reveal">
+      <div class="extras-card-icon">🧭</div>
+      <div class="extras-card-title" data-ar="قالب مسار المهنة" data-en="Career Path Template">قالب مسار المهنة</div>
+      <div class="extras-card-sub" data-ar="خارطة طريق واضحة تُظهر:" data-en="A clear roadmap showing:">خارطة طريق واضحة تُظهر:</div>
+      <ul class="extras-bullets">
+        <li><span data-ar="أي المهارات تبني أولاً" data-en="Which skills to build first">أي المهارات تبني أولاً</span></li>
+        <li><span data-ar="كيف تُرتّب مشاريعك" data-en="How to sequence your projects">كيف تُرتّب مشاريعك</span></li>
+        <li><span data-ar="الأدوار الواقعية التي تستهدفها في كل مرحلة" data-en="What roles you're realistically targeting at each stage">الأدوار الواقعية التي تستهدفها في كل مرحلة</span></li>
+        <li><span data-ar="تحليل الفجوة بين ملفك والوظيفة المستهدفة" data-en="Gap analysis between your profile and target role">تحليل الفجوة بين ملفك والوظيفة المستهدفة</span></li>
+      </ul>
+    </div>
+    <div class="extras-card reveal">
+      <div class="extras-card-icon">📄</div>
+      <div class="extras-card-title" data-ar="قالب السيرة الذاتية والمحفظة" data-en="CV / Portfolio Template">قالب السيرة الذاتية والمحفظة</div>
+      <div class="extras-card-sub" data-ar="تعلّم كيف تقدّم عملك بالضبط:" data-en="Learn exactly how to present your work:">تعلّم كيف تقدّم عملك بالضبط:</div>
+      <ul class="extras-bullets">
+        <li><span data-ar="كيف توثّق مشاريعك بشكل صحيح" data-en="How to document your projects properly">كيف توثّق مشاريعك بشكل صحيح</span></li>
+        <li><span data-ar="ما تضعه في سيرتك وما تحذفه" data-en="What to put on your CV (and what to cut)">ما تضعه في سيرتك وما تحذفه</span></li>
+        <li><span data-ar="كيف تشرح قرارات الهندسة والأدوات" data-en="How to explain architecture decisions and tooling">كيف تشرح قرارات الهندسة والأدوات</span></li>
+      </ul>
+    </div>
+    <div class="extras-card reveal">
+      <div class="extras-card-icon">💼</div>
+      <div class="extras-card-title" data-ar="مشاريع تُوظِّفك" data-en="Hirable Portfolio Projects">مشاريع تُوظِّفك</div>
+      <div class="extras-card-sub" data-ar="مشاريع حقيقية يريد المُوظِّفون رؤيتها:" data-en="Real projects recruiters want to see:">مشاريع حقيقية يريد المُوظِّفون رؤيتها:</div>
+      <ul class="extras-bullets">
+        <li><span data-ar="ما يبحث عنه مديرو التوظيف في المستودعات" data-en="What hiring managers look for in project repos">ما يبحث عنه مديرو التوظيف في المستودعات</span></li>
+        <li><span data-ar="كيف تهيكل مشروعك ووثائقه" data-en="How to structure your project and documentation">كيف تهيكل مشروعك ووثائقه</span></li>
+        <li><span data-ar="كيف تُعبّر عن الأثر والتأثير لا مجرد التنفيذ" data-en="How to communicate impact, not just implementation">كيف تُعبّر عن الأثر والتأثير لا مجرد التنفيذ</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="steps-track">
+    <div class="step-node s1"><div class="step-circle">1</div><div class="step-label" data-ar="تعلّم" data-en="Learn">تعلّم</div></div>
+    <div class="step-line s1-line"></div>
+    <div class="step-node s2"><div class="step-circle">2</div><div class="step-label" data-ar="ابنِ" data-en="Build">ابنِ</div></div>
+    <div class="step-line s2-line"></div>
+    <div class="step-node s3"><div class="step-circle">3</div><div class="step-label" data-ar="قدِّم" data-en="Apply">قدِّم</div></div>
+  </div>
+
+  <!-- Impact Table -->
+  <h3 class="section-title" style="font-size:1.6rem;margin-bottom:1rem" data-ar="التأثير لا التنفيذ — صيغة الكتابة الصحيحة" data-en="Impact Not Implementation — The Right Writing Formula">التأثير لا التنفيذ — صيغة الكتابة الصحيحة</h3>
+  <div style="overflow-x:auto;border:1px solid var(--border);border-radius:14px;margin-bottom:1.5rem">
+    <table class="impact-table">
+      <thead><tr>
+        <th data-ar="❌ لا تكتب هكذا" data-en="❌ Don't Write This">❌ <span data-ar="لا تكتب هكذا" data-en="Don't Write This">لا تكتب هكذا</span></th>
+        <th data-ar="✅ اكتب هكذا بدلاً منه" data-en="✅ Write This Instead">✅ <span data-ar="اكتب هكذا بدلاً منه" data-en="Write This Instead">اكتب هكذا بدلاً منه</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="bad-text" data-ar="بنيت VPC مع شبكات فرعية" data-en="Built a VPC with subnets">بنيت VPC مع شبكات فرعية</td><td class="good-text" data-ar="صمّمت بنية VPC متعددة الطوابق تعزل طبقة البيانات عن الإنترنت مباشرةً" data-en="Designed multi-tier VPC architecture isolating data tier from direct internet exposure">صمّمت بنية VPC متعددة الطوابق تعزل طبقة البيانات عن الإنترنت مباشرةً</td></tr>
+        <tr><td class="bad-text" data-ar="أعددت مراقبة CloudWatch" data-en="Set up CloudWatch monitoring">أعددت مراقبة CloudWatch</td><td class="good-text" data-ar="نفّذت ١٢ تنبيهاً تُغطي الإشارات الذهبية الأربع، خفّض MTTD من ٢٥ دقيقة إلى أقل من ٣" data-en="Implemented 12 CloudWatch alarms covering 4 Golden Signals; reduced MTTD from 25 min to under 3 min">نفّذت ١٢ تنبيهاً تُغطي الإشارات الذهبية الأربع، خفّض MTTD من ٢٥ دقيقة إلى أقل من ٣</td></tr>
+        <tr><td class="bad-text" data-ar="كتبت كود Terraform لنشر البنية التحتية" data-en="Wrote Terraform code to deploy infrastructure">كتبت كود Terraform لنشر البنية التحتية</td><td class="good-text" data-ar="استبدلت النشر اليدوي بوحدات Terraform، خفّض وقت التجهيز من ٤ ساعات إلى ٨ دقائق" data-en="Replaced manual deployments with Terraform modules, reducing provisioning time from 4 hours to 8 minutes">استبدلت النشر اليدوي بوحدات Terraform، خفّض وقت التجهيز من ٤ ساعات إلى ٨ دقائق</td></tr>
+        <tr><td class="bad-text" data-ar="حوّلت تطبيقاً لحاوية Docker" data-en="Dockerized an application">حوّلت تطبيقاً لحاوية Docker</td><td class="good-text" data-ar="حوسبة ٣ خدمات بـ multi-stage builds، خفّضت حجم الصورة ٦٧٪ وحقّقت نشراً متكرراً عبر البيئات" data-en="Containerized 3 services using multi-stage builds, reducing image size 67% and achieving reproducible deployments">حوسبة ٣ خدمات بـ multi-stage builds، خفّضت حجم الصورة ٦٧٪ وحقّقت نشراً متكرراً عبر البيئات</td></tr>
+        <tr><td class="bad-text" data-ar="أنشأت خط CI/CD" data-en="Created a CI/CD pipeline">أنشأت خط CI/CD</td><td class="good-text" data-ar="بنيت خطاً من ٥ مراحل يُؤتمت بناء الكود والاختبار والفحص الأمني والنشر — صفّر الخطوات اليدوية" data-en="Built a 5-stage pipeline automating build, test, security scan, and deploy — reducing manual steps to zero">بنيت خطاً من ٥ مراحل يُؤتمت بناء الكود والاختبار والفحص الأمني والنشر — صفّر الخطوات اليدوية</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ CHECKLIST ════════════════════════════════════════════ -->
+<section class="section section-accent-3 reveal" id="checklist">
+  <div class="section-label" data-ar="قائمة التحقق" data-en="CHECKLIST">قائمة التحقق</div>
+  <h2 class="section-title" data-ar="قائمة التحقق قبل التقديم" data-en="Pre-Application Checklist">قائمة التحقق قبل التقديم</h2>
+  <p class="section-sub" data-ar="انقر على كل بند عند إنجازه — تتبّع تقدّمك نحو الوظيفة الأولى." data-en="Click each item when complete — track your progress toward your first job.">انقر على كل بند عند إنجازه — تتبّع تقدّمك نحو الوظيفة الأولى.</p>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-label">
+      <span data-ar="التقدم الإجمالي" data-en="Overall Progress">التقدم الإجمالي</span>
+      <span id="progressText">0 / 20</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+
+  <div class="checklist" id="checklistEl">
+    <div class="check-group">
+      <div class="check-group-title">GitHub</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="ملف GitHub عام مع Bio واضح وـ Repos مثبّتة (أفضل ٤)" data-en="Public GitHub profile with clear bio and pinned repos (best 4)">ملف GitHub عام مع Bio واضح وـ Repos مثبّتة (أفضل ٤)</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="كل مشروع مثبّت له README مع نظرة عامة، مخطط هندسي، وخطوات النشر" data-en="Every pinned project has README with overview, architecture diagram, deployment steps">كل مشروع مثبّت له README مع نظرة عامة، مخطط هندسي، وخطوات النشر</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="مشروع واحد على الأقل فيه قسم مراقبة (CloudWatch Alarms أو Prometheus)" data-en="At least one project has a monitoring section (CloudWatch alarms or Prometheus/Grafana)">مشروع واحد على الأقل فيه قسم مراقبة (CloudWatch Alarms أو Prometheus)</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="لا بيانات اعتماد أو ملفات .env في أي مستودع (تحقق من تاريخ git أيضاً)" data-en="No credentials or .env files in any repo (check git history too)">لا بيانات اعتماد أو ملفات .env في أي مستودع (تحقق من تاريخ git أيضاً)</div></div>
+    </div>
+    <div class="check-group">
+      <div class="check-group-title">LinkedIn</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="العنوان يحتوي: الدور المستهدف + ٣–٤ تقنيات + آخر شهادة" data-en="Headline contains: target role + 3–4 technologies + most recent cert">العنوان يحتوي: الدور المستهدف + ٣–٤ تقنيات + آخر شهادة</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="قسم About بـ ٥ جمل يتبع الهيكل الصحيح" data-en="About section with 5 sentences following the correct structure">قسم About بـ ٥ جمل يتبع الهيكل الصحيح</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="قسم Skills يحتوي جميع الكلمات المفتاحية الأساسية للكلاود" data-en="Skills section includes all primary cloud keywords">قسم Skills يحتوي جميع الكلمات المفتاحية الأساسية للكلاود</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="قسم Featured فيه رابط لأفضل مشروع GitHub" data-en="Featured section has link to best GitHub project">قسم Featured فيه رابط لأفضل مشروع GitHub</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="جميع الشهادات مضافة مع روابط Credly" data-en="All certifications added with Credly badge links">جميع الشهادات مضافة مع روابط Credly</div></div>
+    </div>
+    <div class="check-group">
+      <div class="check-group-title" data-ar="السيرة الذاتية" data-en="CV">السيرة الذاتية</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="الملخص ٣ جمل أو أقل ويحتوي إنجازاً قابلاً للقياس" data-en="Summary is 3 sentences or fewer and contains a measurable achievement">الملخص ٣ جمل أو أقل ويحتوي إنجازاً قابلاً للقياس</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="كل بند في الخبرة يتبع: فعل + ماذا + أداة + نتيجة" data-en="Every experience bullet follows: Action + What + Tool + Result">كل بند في الخبرة يتبع: فعل + ماذا + أداة + نتيجة</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="المهارات مُصنّفة حسب الفئة لا قائمة عشوائية" data-en="Skills grouped by category, not a random comma-separated list">المهارات مُصنّفة حسب الفئة لا قائمة عشوائية</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="لا يتجاوز صفحتين" data-en="No more than 2 pages total">لا يتجاوز صفحتين</div></div>
+    </div>
+    <div class="check-group">
+      <div class="check-group-title" data-ar="الشهادات" data-en="Certifications">الشهادات</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="AWS Cloud Practitioner ✓ مضافة لـ LinkedIn" data-en="AWS Cloud Practitioner ✓ added to LinkedIn">AWS Cloud Practitioner ✓ <span data-ar="مضافة لـ LinkedIn" data-en="added to LinkedIn">مضافة لـ LinkedIn</span></div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="AWS Solutions Architect Associate ✓ مضافة لـ LinkedIn" data-en="AWS Solutions Architect Associate ✓ added to LinkedIn">AWS Solutions Architect Associate ✓ <span data-ar="مضافة لـ LinkedIn" data-en="added to LinkedIn">مضافة لـ LinkedIn</span></div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="Linux+ أو RHCSA ✓ مضافة لـ LinkedIn" data-en="Linux+ or RHCSA ✓ added to LinkedIn">Linux+ <span data-ar="أو" data-en="or">أو</span> RHCSA ✓ <span data-ar="مضافة لـ LinkedIn" data-en="added to LinkedIn">مضافة لـ LinkedIn</span></div></div>
+    </div>
+    <div class="check-group">
+      <div class="check-group-title" data-ar="تحضير المقابلة" data-en="Interview Prep">تحضير المقابلة</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="يمكنك شرح كل مشروع end-to-end: الهندسة، القرارات، المشاكل وكيف حللتها" data-en="Can explain every project end-to-end: architecture, decisions, problems and how you fixed them">يمكنك شرح كل مشروع end-to-end: الهندسة، القرارات، المشاكل وكيف حللتها</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="يمكنك كتابة Terraform VPC Module من الصفر بدون مرجع" data-en="Can write a Terraform VPC module from scratch with no reference materials">يمكنك كتابة Terraform VPC Module من الصفر بدون مرجع</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text" data-ar="يمكنك الدخول على سيرفر Linux وتشخيص خدمة لا تعمل" data-en="Can SSH into a Linux server and troubleshoot a service that won't start">يمكنك الدخول على سيرفر Linux وتشخيص خدمة لا تعمل</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-title" data-ar="ابنِ شيئًا اليوم." data-en="Build Something Today.">ابنِ شيئًا اليوم.</div>
+  <div class="footer-sub" data-ar="الشهادات تفتح الأبواب · المشاريع تُوظِّفك · التوثيق يُميّزك" data-en="Certifications open doors · Projects get you hired · Documentation sets you apart">الشهادات تفتح الأبواب · المشاريع تُوظِّفك · التوثيق يُميّزك</div>
+  <div style="font-size:0.75rem;color:var(--text3)" data-ar="Cloud Operations Engineer Roadmap — دليل شامل من المبتدئ إلى المتقدم" data-en="Cloud Operations Engineer Roadmap — Complete Guide from Beginner to Advanced">Cloud Operations Engineer Roadmap — دليل شامل من المبتدئ إلى المتقدم</div>
+</footer>
+
+<script>
+// ── LANGUAGE TOGGLE ──────────────────────────────────────────
+let currentLang = 'ar';
+
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  const html = document.documentElement;
+  html.lang = currentLang;
+  html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('langLabel').textContent = currentLang === 'ar' ? 'English' : 'العربية';
+
+  // Update all data-ar / data-en elements
+  document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + currentLang);
+    if (val) el.textContent = val;
+  });
+
+  // Flip border sides for callouts & mistakes
+  document.querySelectorAll('.callout').forEach(el => {
+    if (currentLang === 'en') {
+      el.style.borderRight = 'none';
+      const color = el.classList.contains('warn') ? 'var(--amber)' : el.classList.contains('success') ? 'var(--green)' : 'var(--blue)';
+      el.style.borderLeft = '4px solid ' + color;
+    } else {
+      el.style.borderLeft = 'none';
+      const color = el.classList.contains('warn') ? 'var(--amber)' : el.classList.contains('success') ? 'var(--green)' : 'var(--blue)';
+      el.style.borderRight = '4px solid ' + color;
+    }
+  });
+  document.querySelectorAll('.mistake-item').forEach(el => {
+    if (currentLang === 'en') { el.style.borderRight = 'none'; el.style.borderLeft = '4px solid var(--red)'; }
+    else { el.style.borderLeft = 'none'; el.style.borderRight = '4px solid var(--red)'; }
+  });
+}
+
+// ── CHECKLIST ────────────────────────────────────────────────
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  if (el.classList.contains('done')) el.querySelector('.check-box').textContent = '✓';
+  else el.querySelector('.check-box').textContent = '';
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.check-item');
+  const done = document.querySelectorAll('.check-item.done');
+  const pct = Math.round((done.length / all.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done.length + ' / ' + all.length;
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── SMOOTH ACTIVE NAV ────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--blue2)' : '';
+    a.style.background = a.getAttribute('href') === '#' + current ? 'rgba(59,130,246,0.1)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
